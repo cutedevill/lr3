@@ -1,0 +1,43 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>reCaptcha</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/start.css') }}">
+  </head>
+  <body>
+    <div class="object">
+      <h1>Captcha & Neural Network</h1>
+      <a href="load">Go to individual task</a>
+      <hr>
+      <div class="flex">
+        <div class=container>
+          <h2>Welcome!</h2>
+          <p>
+            This page is used to show you a usage of neural network, which provides
+            an ability to guess an animal breed!
+          </p>
+          <p>
+            Before you have started, please ensure that all needed information
+            including captcha and file upload are complited.
+          </p>
+          <form method="POST" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            <h2>{{ form.upload_first.label }}</h2>
+            <p>{{ form.upload_first }}</p>
+            <div class="captcha">
+              {{ form.recaptcha }}
+            </div>
+            <input type="submit">
+          </form>
+        </div>
+        <div class="neural-img-container">
+          {% if img %}
+            <h2>Your picture</h2>
+            <img src="{{ img }}" alt="">
+            <p class="prediction">Neural network think it is {{ neur }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
